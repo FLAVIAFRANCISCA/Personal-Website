@@ -1,0 +1,4 @@
+{
+  "javascript.implicitProjectConfig.checkJs": false,
+  "sourceMaps.enabled": false
+}
