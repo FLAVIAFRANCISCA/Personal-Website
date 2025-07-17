@@ -18,7 +18,7 @@ function drawMatrix() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
   ctx.fillRect(0, 0, width, height);
 
-  ctx.fillStyle = '#0ff'; // Glow
+  ctx.fillStyle = '#0ff';
   ctx.font = '18px monospace';
 
   for (let i = 0; i < drops.length; i++) {
@@ -56,6 +56,11 @@ function showModal(title, message) {
   };
 }
 
+// Backend URL Detection
+const backendURL = window.location.hostname === 'localhost'
+  ? 'http://localhost:5000'
+  : 'https://contact-form-backend-atvx.onrender.com'; 
+
 // Contact form handling
 const form = document.getElementById('contactForm');
 form.addEventListener('submit', async (e) => {
@@ -68,7 +73,7 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    const response = await fetch('http://localhost:5000/contact', {
+    const response = await fetch(`${backendURL}/contact`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
