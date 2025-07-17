@@ -56,10 +56,8 @@ function showModal(title, message) {
   };
 }
 
-// Backend URL Detection
-const backendURL = window.location.hostname === 'localhost'
-  ? 'http://localhost:5000'
-  : 'https://contact-form-backend-atvx.onrender.com'; 
+// 🔧 Set backend URL explicitly
+const backendURL = 'https://flavia-tsho-tsho.onrender.com';
 
 // Contact form handling
 const form = document.getElementById('contactForm');
@@ -67,9 +65,9 @@ form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   const formData = {
-    name: form.name.value,
-    email: form.email.value,
-    message: form.message.value
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    message: form.message.value.trim()
   };
 
   try {
@@ -80,8 +78,13 @@ form.addEventListener('submit', async (e) => {
     });
 
     const result = await response.json();
-    showModal('Message Sent!', result.message || 'Thank you for reaching out! I will get back to you soon.');
-    form.reset();
+
+    if (response.ok) {
+      showModal('Message Sent!', result.message || 'Thanks for reaching out!');
+      form.reset();
+    } else {
+      throw new Error(result.message || 'Something went wrong');
+    }
   } catch (err) {
     showModal('Oops! Something went wrong.', 'Please try again later or reach out via LinkedIn.');
   }
