@@ -57,7 +57,9 @@ function showModal(title, message) {
 }
 
 // 🔧 Set backend URL explicitly
-const backendURL = 'https://flavia-tsho-tsho.onrender.com';
+const backendURL = window.location.hostname === 'localhost'
+  ? 'http://localhost:10000'
+  : 'https://flavia-tsho-tsho.onrender.com';
 
 // Contact form handling
 const form = document.getElementById('contactForm');
