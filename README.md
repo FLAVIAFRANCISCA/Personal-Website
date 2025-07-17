@@ -2,7 +2,7 @@
 Welcome to my digital garden a space where creativity meets code, and curiosity sparks innovation. This portfolio is more than a static showcase; it’s an interactive experience designed to reflect who I am as a Software Developer. Built from scratch, with care, clarity, and a bit of flair.
 
 # What’s Inside
-This site includes:
+This site includes: 
 
 🎬 Hero Section – with a matrix-inspired background and engaging intro
 
