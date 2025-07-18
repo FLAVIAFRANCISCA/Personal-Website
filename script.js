@@ -107,7 +107,7 @@ form.addEventListener('submit', async (e) => {
       to_email: email
     });
 
-    showModal('Message Sent!', 'Thank you for reaching out — I’ll get back to you soon!');
+    showModal('Message Sent!', 'Thank you for reaching out.I’ll get back to you soon!');
     form.reset();
   } catch (error) {
     console.error('EmailJS Error:', error);
