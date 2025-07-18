@@ -118,14 +118,18 @@
     <section class="section-header">
       <h2 class="section-title">Contact Me</h2>
       <form id="contactForm" class="contact-form">
-      <label for="name" class="visually-hidden">Name</label>
-      <input type="text" id="name" placeholder="Your Name" required />
-      <label for="email" id="email" class="visually-hidden">Email</label>
-      <input type="email" id="email" placeholder="Your Email" required />
-      <label for="message" class="visually-hidden">Message</label>
-      <textarea id="message" name="message" placeholder="Type Your Message..." rows="4" required></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
+        <label for="name" class="visually-hidden">Name</label>
+        <input type="text" id="name" name="from_name" placeholder="Your Name" required />
+
+        <label for="email" class="visually-hidden">Email</label>
+        <input type="email" id="email" name="from_email" placeholder="Your Email" required />
+
+        <label for="message" class="visually-hidden">Message</label>
+        <textarea id="message" name="message" placeholder="Type Your Message..." rows="4" required></textarea>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+  
 
       <!-- Feedback Modal -->
       <div id="feedbackModal" class="modal" aria-hidden="true" role="dialog">

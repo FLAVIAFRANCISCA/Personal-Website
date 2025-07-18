@@ -91,22 +91,18 @@ const form = document.getElementById('contactForm');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const { name, email, message } = form;
-
   const templateParams = {
-    from_name: name.value.trim(),
-    from_email: email.value.trim(),
-    message: message.value.trim()
+    from_name: form.elements['from_name'].value.trim(),
+    from_email: form.elements['from_email'].value.trim(),
+    message: form.elements['message'].value.trim()
   };
 
   try {
-    //  Send email to myselff
     await emailjs.send('service_4fwfgzt', 'template_7upmncq', templateParams);
 
-    //  Send auto-reply
     await emailjs.send('service_4fwfgzt', 'template_kb3gwk4', {
-      to_name: name.value.trim(),
-      to_email: email.value.trim()
+      to_name: templateParams.from_name,
+      to_email: templateParams.from_email
     });
 
     showModal('Message Sent!', 'Thank you for reaching out; I’ll get back to you soon!');
