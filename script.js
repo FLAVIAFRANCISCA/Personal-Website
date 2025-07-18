@@ -91,21 +91,23 @@ const form = document.getElementById('contactForm');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const templateParams = {
-    from_name: form.elements['from_name'].value.trim(),
-    from_email: form.elements['from_email'].value.trim(),
-    message: form.elements['message'].value.trim()
-  };
-
   try {
+    // Send main email using form values (based on name="...")
     await emailjs.sendForm('service_4fwfgzt', 'template_7upmncq', form);
 
+    // Get values for auto-reply
+    const name = form.elements['from_name'].value.trim();
+    const email = form.elements['from_email'].value.trim();
+
+    // Send auto-reply using JS object
     await emailjs.send('service_4fwfgzt', 'template_kb3gwk4', {
-      to_name: templateParams.from_name,
-      to_email: templateParams.from_email
+      from_name: name,
+      from_email: email,
+      to_name: name,
+      to_email: email
     });
 
-    showModal('Message Sent!', 'Thank you for reaching out; I’ll get back to you soon!');
+    showModal('Message Sent!', 'Thank you for reaching out — I’ll get back to you soon!');
     form.reset();
   } catch (error) {
     console.error('EmailJS Error:', error);
