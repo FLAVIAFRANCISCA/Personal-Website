@@ -183,20 +183,16 @@ main#page-content {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal.show,
+/* Unified active state for both modals */
+.modal.active,
 #feedbackModal.active {
   opacity: 1;
   pointer-events: auto;
 }
 
-#feedbackModal .modal-content h2,
-#feedbackModal .modal-content p {
-  color: white;
-}
-
+/* Modal content shared styling */
 .modal-content,
-#feedbackModal .modal-content 
-{
+#feedbackModal .modal-content {
   background-color: #121212;
   padding: 20px;
   border-radius: 8px;
@@ -213,7 +209,8 @@ main#page-content {
   transition: all 0.3s ease-in-out;
 }
 
-.modal.show .modal-content,
+/* Modal content animation on active */
+.modal.active .modal-content,
 #feedbackModal.active .modal-content {
   transform: scale(1);
   opacity: 1;

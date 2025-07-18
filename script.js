@@ -39,6 +39,35 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 drawMatrix();
 
+// Video Modal 
+const demoButtons = document.querySelectorAll('.demo-btn');
+const videoModal = document.getElementById('videoModal');
+const projectVideo = document.getElementById('projectVideo');
+const videoCloseBtn = document.getElementById('videoCloseBtn');
+
+demoButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const card = btn.closest('.project-card');
+    const videoSrc = card.getAttribute('data-video-src');
+    projectVideo.src = videoSrc;
+    videoModal.classList.add('active'); 
+  });
+});
+
+videoCloseBtn.addEventListener('click', () => {
+  videoModal.classList.remove('active');
+  projectVideo.pause();
+  projectVideo.currentTime = 0;
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === videoModal) {
+    videoModal.classList.remove('active');
+    projectVideo.pause();
+    projectVideo.currentTime = 0;
+  }
+});
+
 // Contact Form Modal
 function showModal(title, message) {
   const modal = document.getElementById('feedbackModal');
@@ -75,12 +104,12 @@ form.addEventListener('submit', async (e) => {
     await emailjs.send('service_4fwfgzt', 'template_7upmncq', templateParams);
 
     //  Send auto-reply
-    await emailjs.send('service_4fwfgzt', 'Ytemplate_kb3gwk4', {
+    await emailjs.send('service_4fwfgzt', 'template_kb3gwk4', {
       to_name: name.value.trim(),
       to_email: email.value.trim()
     });
 
-    showModal('Message Sent!', 'Thank you for reaching out — I’ll get back to you soon!');
+    showModal('Message Sent!', 'Thank you for reaching out; I’ll get back to you soon!');
     form.reset();
   } catch (error) {
     console.error('EmailJS Error:', error);
