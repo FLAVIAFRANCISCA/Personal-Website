@@ -88,17 +88,21 @@ function showModal(title, message) {
 // EmailJS Contact Form Submission
 const form = document.getElementById('contactForm');
 
-fform.addEventListener('submit', async (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  const templateParams = {
+    from_name: form.elements['from_name'].value.trim(),
+    from_email: form.elements['from_email'].value.trim(),
+    message: form.elements['message'].value.trim()
+  };
+
   try {
-    // Sends full form values via the form element
     await emailjs.sendForm('service_4fwfgzt', 'template_7upmncq', form);
 
-    // Auto-reply
     await emailjs.send('service_4fwfgzt', 'template_kb3gwk4', {
-      to_name: form.elements['from_name'].value.trim(),
-      to_email: form.elements['from_email'].value.trim()
+      to_name: templateParams.from_name,
+      to_email: templateParams.from_email
     });
 
     showModal('Message Sent!', 'Thank you for reaching out; I’ll get back to you soon!');
