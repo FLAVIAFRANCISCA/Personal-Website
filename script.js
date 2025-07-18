@@ -1,3 +1,61 @@
+// Matrix-style binary rain effect 
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+
+let width, height, columns, drops;
+const binaryChars = ['0', '1'];
+
+function resizeCanvas() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+  columns = Math.floor(width / 20);
+  drops = Array(columns).fill(1);
+}
+
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.fillStyle = '#0ff';
+  ctx.font = '18px monospace';
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = binaryChars[Math.floor(Math.random() * binaryChars.length)];
+    ctx.fillText(text, i * 20, drops[i] * 20);
+
+    if (drops[i] * 20 > height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+
+    drops[i]++;
+  }
+
+  requestAnimationFrame(drawMatrix);
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+drawMatrix();
+
+// Contact Form Modal
+function showModal(title, message) {
+  const modal = document.getElementById('feedbackModal');
+  const titleEl = document.getElementById('modalTitle');
+  const descEl = document.getElementById('modalDesc');
+  const closeBtn = document.getElementById('modalCloseBtn');
+
+  titleEl.textContent = title;
+  descEl.textContent = message;
+  modal.classList.add('active');
+
+  closeBtn.onclick = () => modal.classList.remove('active');
+  window.onclick = (e) => {
+    if (e.target === modal) modal.classList.remove('active');
+  };
+}
+
 // EmailJS Contact Form Submission
 const form = document.getElementById('contactForm');
 
