@@ -209,6 +209,14 @@ main#page-content {
   transition: all 0.3s ease-in-out;
 }
 
+.modal-content video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  display: block;
+}
+
 /* Modal content animation on active */
 .modal.active .modal-content,
 #feedbackModal.active .modal-content {
