@@ -98,7 +98,7 @@ form.addEventListener('submit', async (e) => {
   };
 
   try {
-    await emailjs.send('service_4fwfgzt', 'template_7upmncq', templateParams);
+    await emailjs.sendForm('service_4fwfgzt', 'template_7upmncq', form);
 
     await emailjs.send('service_4fwfgzt', 'template_kb3gwk4', {
       to_name: templateParams.from_name,
